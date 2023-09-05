@@ -147,11 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        flexibleSpace: const Image(
-          image: AssetImage(
-              'Arcoris.png'), // Reemplaza 'your_image.png' con la ruta de tu imagen
-          fit: BoxFit.cover,
-        ),
       ),
       body: Center(
         child: Padding(
@@ -161,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'Email',
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.purple),
                     borderRadius: BorderRadius.circular(20.0),
