@@ -7,110 +7,6 @@ import '../Control/globals.dart';
 import '../ElevatedButton.dart';
 import 'info.dart';
 
-// class LoginScreen extends StatefulWidget {
-//   const LoginScreen({Key? key}) : super(key: key);
-
-//   @override
-//   _LoginScreenState createState() => _LoginScreenState();
-// }
-
-// class _LoginScreenState extends State<LoginScreen> {
-//   String _email = '';
-//   String _password = '';
-
-//   loginPressed() async {
-//     if (_email.isNotEmpty && _password.isNotEmpty) {
-//       http.Response response = await AuthServices.login(_email, _password);
-//       Map responseMap = jsonDecode(response.body);
-//       if (response.statusCode == 200) {
-//         Navigator.push(
-//             context,
-//             MaterialPageRoute(
-//               builder: (BuildContext context) => InfoPage(),
-//             ));
-//       } else {
-//         errorSnackBar(context, responseMap.values.first);
-//       }
-//     } else {
-//       errorSnackBar(context, 'enter all required fields');
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       // Elimina el AppBar aquí
-//       body: Padding(
-//         padding: const EdgeInsets.all(32.0),
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Container(
-//                 decoration: BoxDecoration(
-//                   border: Border.all(
-//                       color: Color.fromARGB(255, 100, 3, 174), width: 2),
-//                   shape: BoxShape.circle,
-//                 ),
-//                 child: const Icon(Icons.person,
-//                     color: Color.fromARGB(255, 100, 3, 174), size: 120),
-//               ),
-//               const SizedBox(height: 50),
-//               _inputField("Usuario", _email),
-//               const SizedBox(height: 20),
-//               _inputField("Contraseña", _password, isPassword: true),
-//               const SizedBox(height: 50),
-//               ElevatedButton(
-//                 onPressed: () => loginPressed(),
-//                 child: const SizedBox(
-//                   width: double.infinity,
-//                   child: Text(
-//                     "Crear Cuenta",
-//                     textAlign: TextAlign.center,
-//                     style: TextStyle(fontSize: 20),
-//                   ),
-//                 ),
-//                 style: ElevatedButton.styleFrom(
-//                   shape: const StadiumBorder(),
-//                   primary: Colors.white,
-//                   onPrimary: Color.fromARGB(255, 100, 3, 174),
-//                   padding: const EdgeInsets.symmetric(vertical: 16),
-//                 ),
-//               ),
-//               // _loginBtn(),
-//               // const SizedBox(height: 20),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _inputField(String hintText, String value, {isPassword = false}) {
-//     var border = OutlineInputBorder(
-//         borderRadius: BorderRadius.circular(18),
-//         borderSide: const BorderSide(color: Color.fromARGB(255, 100, 3, 174)));
-
-//     return TextField(
-//       style: const TextStyle(color: Color.fromARGB(255, 100, 3, 174)),
-//       onChanged: (newValue) {
-//         if (hintText == "Usuario") {
-//           _email = newValue;
-//         } else if (hintText == "Contraseña") {
-//           _password = newValue;
-//         }
-//       },
-//       decoration: InputDecoration(
-//         hintText: hintText,
-//         hintStyle: const TextStyle(color: Color.fromARGB(255, 100, 3, 174)),
-//         enabledBorder: border,
-//         focusedBorder: border,
-//       ),
-//       obscureText: isPassword,
-//     );
-//   }
-// }
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -137,7 +33,33 @@ class _LoginScreenState extends State<LoginScreen> {
         errorSnackBar(context, responseMap.values.first);
       }
     } else {
-      errorSnackBar(context, 'Enter all required fields');
+      // Mostrar un AlertDialog personalizado
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Campos vacíos",
+                style: TextStyle(color: Colors.purple)),
+            content: const Text(
+              "Por favor, complete ambos campos para iniciar sesión.",
+              style: TextStyle(fontSize: 16),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("Aceptar",
+                    style: TextStyle(color: Colors.purple)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+            backgroundColor: Colors.white, // Color de fondo del AlertDialog
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ), // Bordes redondeados
+          );
+        },
+      );
     }
   }
 
@@ -154,18 +76,21 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Icon(Icons.person,
+                  color: Color.fromARGB(156, 172, 29, 177), size: 120),
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Email',
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
+                    borderSide: const BorderSide(
+                        color: Color.fromRGBO(156, 39, 176, 1)),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
+                    borderSide: const BorderSide(color: Colors.purple),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  hintStyle: TextStyle(color: Colors.purple),
+                  hintStyle: const TextStyle(color: Colors.purple),
                 ),
                 onChanged: (value) {
                   _email = value;
@@ -177,16 +102,16 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'Enter your password',
+                  hintText: 'Contraseña',
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
+                    borderSide: const BorderSide(color: Colors.purple),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
+                    borderSide: const BorderSide(color: Colors.purple),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  hintStyle: TextStyle(color: Colors.purple),
+                  hintStyle: const TextStyle(color: Colors.purple),
                 ),
                 onChanged: (value) {
                   _password = value;
@@ -203,10 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 onPressed: () => loginPressed(),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
-                    'LOG IN',
+                    'Iniciar Sesion',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

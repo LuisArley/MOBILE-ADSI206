@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jueputa/screens/report.dart';
 
-import 'GrayEst.dart';
-import 'datos.dart';
-
-class InfoPage extends StatelessWidget {
+class DatosImportantesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +10,7 @@ class InfoPage extends StatelessWidget {
             Colors.purple, // Cambia el color de fondo de la barra de navegación
       ),
       drawer: Drawer(
-        backgroundColor: Color.fromARGB(255, 255, 251, 251),
+        backgroundColor: Colors.transparent,
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
@@ -30,14 +26,14 @@ class InfoPage extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                'Reportes',
+                'Datos',
                 style: TextStyle(color: Colors.purple),
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => ReportesPage(),
+                    builder: (BuildContext context) => DatosImportantesPage(),
                   ),
                 );
                 // Navega a la página de inicio
@@ -45,7 +41,7 @@ class InfoPage extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                'Datos Importantes',
+                'Perfil',
                 style: TextStyle(color: Colors.purple),
               ),
               onTap: () {
@@ -61,15 +57,14 @@ class InfoPage extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                'Graficos Y Estadisticas',
+                'Configuración',
                 style: TextStyle(color: Colors.purple),
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        GraficasEstadisticasPage(),
+                    builder: (BuildContext context) => DatosImportantesPage(),
                   ),
                 );
                 // Navega a la página de configuración
