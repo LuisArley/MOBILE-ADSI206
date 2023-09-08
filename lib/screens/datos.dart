@@ -14,7 +14,7 @@ class DatosImportantesPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text("Nombre de usuario"),
+              accountName: Text("usuario"),
               accountEmail: Text("correo@ejemplo.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
