@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jueputa/screens/report.dart';
-
 import 'GrayEst.dart';
 import 'datos.dart';
 
@@ -9,29 +8,39 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Información'),
-        backgroundColor:
-            Colors.purple, // Cambia el color de fondo de la barra de navegación
+        title: Text(
+          'Información',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.purple,
       ),
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 255, 251, 251),
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text("Nombre de usuario"),
+              accountName: Text(
+                "Nombre de usuario",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               accountEmail: Text("correo@ejemplo.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Icon(
                   Icons.person,
                   color: Colors.blue,
+                  size: 40,
                 ),
               ),
             ),
             ListTile(
               title: Text(
                 'Reportes',
-                style: TextStyle(color: Colors.purple),
+                style: TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
               onTap: () {
                 Navigator.push(
@@ -40,29 +49,34 @@ class InfoPage extends StatelessWidget {
                     builder: (BuildContext context) => ReportesPage(),
                   ),
                 );
-                // Navega a la página de inicio
               },
             ),
             ListTile(
               title: Text(
                 'Datos Importantes',
-                style: TextStyle(color: Colors.purple),
+                style: TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
               onTap: () {
-                // Navega a la página "OtraPagina" cuando se toca "Inicio"
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) => DatosImportantesPage(),
                   ),
                 );
-                // Navega a la página de perfil
               },
             ),
             ListTile(
               title: Text(
-                'Graficos Y Estadisticas',
-                style: TextStyle(color: Colors.purple),
+                'Gráficos y Estadísticas',
+                style: TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
               onTap: () {
                 Navigator.push(
@@ -72,7 +86,6 @@ class InfoPage extends StatelessWidget {
                         GraficasEstadisticasPage(),
                   ),
                 );
-                // Navega a la página de configuración
               },
             ),
           ],
@@ -85,38 +98,39 @@ class InfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Bienvenido a la página de información',
+              '¡Bienvenido a la página de información!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black, // Cambia el color del texto
+                color: Colors.purple,
               ),
             ),
             SizedBox(height: 20.0),
             Text(
-              'Aquí puedes mostrar información importante de tu aplicación de manera moderna y atractiva.',
+              'Aquí puedes encontrar información importante de tu aplicación de una manera moderna y atractiva.',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey, // Cambia el color del texto
+                color: Colors.black87,
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 40.0),
             ElevatedButton(
               onPressed: () {
                 // Agrega aquí la funcionalidad que desees
               },
-              child: Text('Hacer algo'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.purple, // Cambia el color de fondo del botón
-                textStyle: TextStyle(
+              child: Text(
+                'Realizar una acción',
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(8.0), // Bordes redondeados
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
             ),
